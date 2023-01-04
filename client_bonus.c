@@ -1,16 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 18:41:15 by aaslan            #+#    #+#             */
-/*   Updated: 2023/01/04 04:17:41 by aaslan           ###   ########.fr       */
+/*   Created: 2023/01/04 03:47:31 by aaslan            #+#    #+#             */
+/*   Updated: 2023/01/04 04:23:49 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utilities/utilities.h"
+
+void	ft_confirm_signal(int signal)
+{
+	ft_print_string("Server kendisine gelen sinyal'i onayladı\n");
+}
 
 void	ft_send_signal(int process_id, char *string)
 {
@@ -26,6 +31,7 @@ void	ft_send_signal(int process_id, char *string)
 			else
 				kill(process_id, SIGUSR2);
 			usleep(100);
+			signal(SIGUSR1, ft_confirm_signal);
 			bit_index++;
 		}
 		string++;

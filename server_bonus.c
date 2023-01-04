@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 13:47:27 by aaslan            #+#    #+#             */
-/*   Updated: 2023/01/04 04:18:21 by aaslan           ###   ########.fr       */
+/*   Created: 2023/01/04 01:03:43 by aaslan            #+#    #+#             */
+/*   Updated: 2023/01/04 04:24:34 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_print_server_id(int server_id)
 	ft_print_char('\n');
 }
 
-void	ft_receive_signal(int signal)
+void	ft_receive_signal(int signal, siginfo_t *sig_info, void *context)
 {
 	static int	bit_index = 0;
 	static char	character = 0;
@@ -32,14 +32,19 @@ void	ft_receive_signal(int signal)
 		ft_print_char(character);
 		bit_index = 0;
 		character = 0;
+		kill(sig_info->si_pid, SIGUSR1);
 	}
 }
 
 int	main(void)
 {
+	struct sigaction	struct_sigaction;
+
+	struct_sigaction.sa_flags = SA_SIGINFO;
+	struct_sigaction.sa_sigaction = ft_receive_signal;
 	ft_print_server_id(getpid());
-	signal(SIGUSR1, ft_receive_signal);
-	signal(SIGUSR2, ft_receive_signal);
+	sigaction(SIGUSR1, &struct_sigaction, NULL);
+	sigaction(SIGUSR2, &struct_sigaction, NULL);
 	while (1)
 		pause();
 	return (0);
