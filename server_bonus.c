@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 01:03:43 by aaslan            #+#    #+#             */
-/*   Updated: 2023/01/04 04:24:34 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/01/04 16:27:36 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_receive_signal(int signal, siginfo_t *sig_info, void *context)
 	static int	bit_index = 0;
 	static char	character = 0;
 
+	(void)context;
 	if (signal == SIGUSR1)
 		character = character | 1 << bit_index;
 	bit_index++;

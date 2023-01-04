@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 18:41:15 by aaslan            #+#    #+#             */
-/*   Updated: 2023/01/04 04:17:41 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/01/04 16:19:57 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char *argv[])
 		ft_print_string("Sadece Server ID ve Mesaj girilmelidir.\n");
 		return (0);
 	}
-	if (ft_not_numeric(argv[1]))
+	if (!ft_only_numeric(argv[1]))
 	{
 		ft_print_string("Server ID sayısal bir değer olmalıdır.\n");
 		return (0);
@@ -49,7 +49,7 @@ int	main(int argc, char *argv[])
 	server_id = ft_atoi(argv[1]);
 	if (server_id <= 0)
 	{
-		ft_print_string("Server ID 0'dan bir değer olmalıdır.\n");
+		ft_print_string("Server ID 0'dan büyük bir değer olmalıdır.\n");
 		return (0);
 	}
 	ft_send_signal(server_id, argv[2]);

@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:37:05 by aaslan            #+#    #+#             */
-/*   Updated: 2023/01/04 00:43:26 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/01/04 16:17:22 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ char	*ft_strchr(const char *s, int c);
  * @param string Kontrol edilecek olan string ifade
  * @return int ==> 1 (true) veya 0 (false)
  */
-int		ft_not_numeric(char *string);
+int		ft_only_numeric(char *string);
 
 #endif

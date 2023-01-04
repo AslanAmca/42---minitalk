@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 03:47:31 by aaslan            #+#    #+#             */
-/*   Updated: 2023/01/04 04:23:49 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/01/04 16:29:18 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_confirm_signal(int signal)
 {
-	ft_print_string("Server kendisine gelen sinyal'i onayladı\n");
+	if (signal == SIGUSR1)
+		ft_print_string("Server kendisine gelen sinyal'i onayladı\n");
 }
 
 void	ft_send_signal(int process_id, char *string)
@@ -47,7 +48,7 @@ int	main(int argc, char *argv[])
 		ft_print_string("Sadece Server ID ve Mesaj girilmelidir.\n");
 		return (0);
 	}
-	if (ft_not_numeric(argv[1]))
+	if (!ft_only_numeric(argv[1]))
 	{
 		ft_print_string("Server ID sayısal bir değer olmalıdır.\n");
 		return (0);

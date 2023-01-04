@@ -6,18 +6,21 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 21:03:27 by aaslan            #+#    #+#             */
-/*   Updated: 2023/01/04 00:45:37 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/01/04 16:21:45 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utilities.h"
 
-int	ft_not_numeric(char *string)
+int	ft_only_numeric(char *string)
 {
+	if (*string == '-' || *string == '+')
+		string++;
 	while (*string != '\0')
 	{
 		if (!ft_strchr("0123456789", *string))
-			return (1);
+			return (0);
 		string++;
 	}
+	return (1);
 }
